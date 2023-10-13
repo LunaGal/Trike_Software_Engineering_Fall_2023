@@ -9,4 +9,5 @@ class Board
 	void move_neutral(int row, int col, char player) {
 		// Move neutral piece to the specified spot with correct player
 	}
+	//test
 };
