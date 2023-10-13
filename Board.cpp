@@ -1,3 +1,6 @@
+#include <iostream>
+#include "game.h"
+
 class Board
 {
 	int size;

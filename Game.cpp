@@ -1,3 +1,6 @@
+#include <iostream>
+#include "game.h"
+
 class Game {
 	char player_name;
 	Board curr_board;
