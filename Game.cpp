@@ -6,3 +6,5 @@ class Game {
 		// Uses move_neutral to place it
 	}
 }
+
+//Test PR by Akhmad
