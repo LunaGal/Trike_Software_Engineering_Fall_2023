@@ -1,10 +1,11 @@
 #include <iostream>
 #include "game.h"
+#include "board.h"
 
 int main(int argc, char const *argv[])
 {
 	printf("Nothing yet\n");
-	Board test_board = Board(0);
-	Game test_game = Game();
+	Board test_board;
+	Game test_game;
 	return 0;
 }

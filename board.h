@@ -1,3 +1,5 @@
+#ifndef TRIKE_BOARD_H
+#define TRIKE_BOARD_H
 class Board {
 	private:
 		int size;
@@ -9,3 +11,4 @@ class Board {
 		Board();
 		Board(int new_size);
 };
+#endif
