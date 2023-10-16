@@ -1,6 +1,9 @@
+#include "board.h"
 class Game {
-	char player_name;
-	Board curr_board;
-	void request_starting_pos();
+	private:
+		char player_name;
+		Board curr_board;
+	public:
+		void request_starting_pos();
 };
 

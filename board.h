@@ -1,7 +1,11 @@
 class Board {
-	int size;
-	char grid[size][size];
+	private:
+		int size;
+		char *grid[];
 
-	void print_board();
-	void move_neutral(int row, int col, char player);
+	public:
+		void print_board();
+		void move_neutral(int row, int col, char player);
+		Board();
+		Board(int new_size);
 };
