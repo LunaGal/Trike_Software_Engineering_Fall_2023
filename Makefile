@@ -1,17 +1,17 @@
 BUILDFLAGS = -Wall
-OBJFLAGS = -Wall -O
+OBJFLAGS = -Wall -c
 
 main: main.o Board.o Game.o
 	g++ $(BUILDFLAGS) -o $@ $^
 
 main.o: main.cpp game.h board.h
-	g++ $(OBJFLAGS) -o $@ main.cpp
+	g++ $(OBJFLAGS) main.cpp -o $@
 
 Board.o: Board.cpp board.h
-	g++ $(OBJFLAGS) -o $@ Board.cpp
+	g++ $(OBJFLAGS) Board.cpp -o $@
 
 Game.o: Game.cpp game.h board.h
-	g++ $(OBJFLAGS) -o $@ Game.cpp
+	g++ $(OBJFLAGS) Game.cpp -o $@
 
 clean:
 	rm *.o
