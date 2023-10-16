@@ -1,15 +1,11 @@
 #include <iostream>
-#include "game.h"
+#include "board.h"
 
-class Board
-{
-	int size;
-	char grid[size][size];
 
-	void print_board() {
-		// Display the board
-	}
-	void move_neutral(int row, int col, char player) {
-		// Move neutral piece to the specified spot with correct player
-	}
-};
+
+void Board::print_board() {
+	// Display the board
+}
+void Board::move_neutral(int row, int col, char player) {
+	// Move neutral piece to the specified spot with correct player
+}
