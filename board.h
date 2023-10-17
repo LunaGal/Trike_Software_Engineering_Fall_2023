@@ -1,9 +1,11 @@
 #ifndef TRIKE_BOARD_H
 #define TRIKE_BOARD_H
+#include <vector>
+
 class Board {
 	private:
 		int size;
-		char *grid[];
+		std::vector<std::vector<char>> grid;
 
 	public:
 		void print_board();
