@@ -6,9 +6,9 @@ using namespace std;
 
 
 void Board::print_board() {
-	for (auto e : grid) {
-		for (char f: e) {
-			cout << f << " ";
+	for (auto row : grid) {
+		for (char c: row) {
+			cout << c << " ";
 		}
 		cout << "\n";
 	}
@@ -22,8 +22,10 @@ Board::Board() {
 }
 
 Board::Board(int new_size) {
+    int xpos = 0;
+    int ypos = 0;
 	size = new_size;
-	grid = vector<vector<char>>();
+	grid = vector<vector<char> >();
 
 	for (int i = size; i > 0; i--) {
 		vector<char> row;

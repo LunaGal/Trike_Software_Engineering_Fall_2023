@@ -1,11 +1,16 @@
 #ifndef TRIKE_BOARD_H
 #define TRIKE_BOARD_H
 #include <vector>
+using namespace std;
 
 class Board {
 	private:
 		int size;
-		std::vector<std::vector<char>> grid;
+
+        // Position of neutral piece
+        int xpos;
+        int ypos;
+		vector<vector<char> > grid;
 
 	public:
 		void print_board();
