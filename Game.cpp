@@ -1,7 +1,7 @@
 #include <iostream>
 #include "board.h"
 #include "game.h"
-
+using namespace std;
 
 Game::Game(){
 	player_name = 'A';

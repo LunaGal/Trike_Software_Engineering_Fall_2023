@@ -8,8 +8,8 @@ class Board {
 		int size;
 
         // Position of neutral piece
-        int xpos;
-        int ypos;
+        int xpos = 0;
+        int ypos = 0;
 		vector<vector<char> > grid;
 
 	public:
