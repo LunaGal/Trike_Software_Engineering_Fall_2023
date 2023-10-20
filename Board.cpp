@@ -6,13 +6,17 @@ using namespace std;
 
 
 void Board::print_board() {
-	for (auto row : grid) {
-		for (char c: row) {
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < i; j++) {
+			cout << " ";
+		}
+		for (char c: grid[i]) {
 			cout << c << " ";
 		}
 		cout << "\n";
 	}
 }
+
 void Board::move_neutral(int row, int col, char player) {
 	// Move neutral piece to the specified spot with correct player
 }

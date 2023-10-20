@@ -1,3 +1,4 @@
+main
 *.o
 .idea
 .DS_Store
