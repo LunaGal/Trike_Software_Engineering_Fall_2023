@@ -10,8 +10,7 @@ int main(int argc, char const *argv[])
 	Board test_board = Board(3);
 	test_board.print_board();
 
-	Game test_game;
-	
+	Game test_game(3);
 	test_game.request_starting_pos();
 
 

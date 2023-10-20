@@ -15,6 +15,7 @@ class Board {
 	public:
 		void print_board();
 		void move_neutral(int row, int col, char player);
+		int get_size();
 		Board();
 		Board(int new_size);
 };

@@ -16,6 +16,9 @@ void Board::print_board() {
 void Board::move_neutral(int row, int col, char player) {
 	// Move neutral piece to the specified spot with correct player
 }
+int Board::get_size(){
+	return size;
+}
 
 Board::Board() {
 	// Default constructor
