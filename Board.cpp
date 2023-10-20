@@ -1,5 +1,6 @@
 #include <iostream>
 #include "board.h"
+#include <cctype>
 
 using namespace std;
 
@@ -19,6 +20,17 @@ void Board::print_board() {
 
 void Board::move_neutral(int row, int col, char player) {
 	// Move neutral piece to the specified spot with correct player
+    grid[row][col] = toupper(player);
+
+    //Convert char in prev pos. to lower-case
+    char prevChar = grid[xpos][ypos];
+    grid[xpos][ypos] = tolower(prevChar);
+
+    //Same row, col
+
+    xpos = row;
+    ypos = col;
+
 }
 
 Board::Board() {
