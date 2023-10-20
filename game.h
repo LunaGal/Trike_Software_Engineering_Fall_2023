@@ -7,6 +7,7 @@ class Game {
 		Board curr_board;
 	public:
 		void request_starting_pos();
+		Game();
 };
 #endif
 

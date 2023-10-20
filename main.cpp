@@ -11,6 +11,7 @@ int main(int argc, char const *argv[])
 
 	test_board.print_board();
 
+
     test_board.move_neutral(0, 1, 'A');
     test_board.print_board();
     test_board.move_neutral(1, 1, 'B');
@@ -19,5 +20,9 @@ int main(int argc, char const *argv[])
     test_board.print_board();
 
 	Game test_game;
+	
+	test_game.request_starting_pos();
+
+
 	return 0;
 }
