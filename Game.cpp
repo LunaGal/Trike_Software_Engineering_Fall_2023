@@ -44,3 +44,7 @@ void Game::request_starting_pos() {
 	curr_board.move_neutral(row, col, player_name);
 
 }
+
+void Game::display_board() {
+	curr_board.print_board();
+}

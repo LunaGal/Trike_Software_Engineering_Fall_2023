@@ -8,6 +8,7 @@ class Game {
 
 	public:
 		void request_starting_pos();
+		void display_board();
 		Game(int num);
 };
 #endif

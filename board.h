@@ -1,6 +1,7 @@
 #ifndef TRIKE_BOARD_H
 #define TRIKE_BOARD_H
 #include <vector>
+#include <cstring>
 using namespace std;
 
 class Board {
@@ -8,13 +9,15 @@ class Board {
 		int size;
 
         // Position of neutral piece
-        int xpos = 0;
-        int ypos = 0;
+        int xpos;
+        int ypos;
 		vector<vector<char> > grid;
 
 	public:
 		void print_board();
 		void move_neutral(int row, int col, char player);
+		// Accepts L, R, UL, UR, DL, DR
+		void move_relative(int distance, string direction);
 		int get_size();
 		Board();
 		Board(int new_size);

@@ -23,15 +23,16 @@ void Board::move_neutral(int row, int col, char player) {
     grid[row][col] = toupper(player);
 
     //Convert char in prev pos. to lower-case
-    char prevChar = grid[xpos][ypos];
-    grid[xpos][ypos] = tolower(prevChar);
-
-    //Same row, col
+    if (xpos >= 0) {
+    	char prevChar = grid[xpos][ypos];
+    	grid[xpos][ypos] = tolower(prevChar);
+    }
 
     xpos = row;
     ypos = col;
 
 }
+
 int Board::get_size(){
 	return size;
 }
@@ -41,8 +42,8 @@ Board::Board() {
 }
 
 Board::Board(int new_size) {
-    int xpos = 0;
-    int ypos = 0;
+    xpos = -1;
+    ypos = -1;
 	size = new_size;
 	grid = vector<vector<char> >();
 
