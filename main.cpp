@@ -6,13 +6,5 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-	printf("Nothing yet\n");
-
-	Game test_game(3);
-	test_game.display_board();
-	test_game.request_starting_pos();
-	test_game.display_board();
-
-
-	return 0;
+    return 0;
 }

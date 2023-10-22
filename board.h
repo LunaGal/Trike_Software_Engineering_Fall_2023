@@ -17,7 +17,7 @@ class Board {
 		void print_board();
 		void move_neutral(int row, int col, char player);
 		// Accepts L, R, UL, UR, DL, DR
-		void move_relative(int distance, string direction);
+		void move_relative(int distance, string direction, char player);
 		int get_size();
 		Board();
 		Board(int new_size);
