@@ -11,5 +11,7 @@ class Game {
 		void display_board();
 		Game(int num);
 };
+
+int request_int(const string);
 #endif
 
