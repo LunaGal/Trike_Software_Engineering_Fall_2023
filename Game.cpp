@@ -2,6 +2,9 @@
 #include "board.h"
 #include "game.h"
 using namespace std;
+#ifndef SPACES
+#define spaces curr_board.get_size() - row + 1
+#endif
 
 Game::Game(int num){
 	player_name = 'A';
@@ -15,26 +18,27 @@ void Game::request_starting_pos() {
 	int row, col;
 
 	cout << "Enter where you would like to place the neutral piece" << endl;
-	cout << "Enter one number for the row you would like to start on" << endl;
-	cin >> row;
+	row = request_int("row");
 	
-	while (row > curr_board.get_size()){
+	while (row > curr_board.get_size()) {
 		cout << "Your input is invalid because the board only has " << curr_board.get_size() << " rows" << endl;
-		cout << "Enter one number for the row you would like to start on" << endl;
-		cin >> row;
+		row = request_int("row");
 	}
 	
-	cout << "Enter how many spaces form the left you would like to place the piece" << endl;
-	cin >> col; 
+	cout << "How many spaces form the left you would like to place the piece?" << endl;
+	col = request_int("column"); 
 
 
-	while (row < col){
-		cout << "Your input is invalid because row " << row <<  " has only " << row << " spaces." << endl;
+	while (col > spaces){
+		cout << "Your input is invalid because row " << row <<  " has only " << (spaces) << " spaces." << endl;
 		cout << "Enter where you would like to place the neutral piece" << endl;
-		cout << "Enter one numner for the row you would like to start on" << endl;
-		cin >> row;
-		cout << "Enter how many spaces form the left you would like to place the piece" << endl;
-		cin >> col; 
+		row = request_int("row");
+		while (row > curr_board.get_size()) {
+			cout << "Your input is invalid because the board only has " << curr_board.get_size() << " rows" << endl;
+			row = request_int("row");
+		}
+		cout << "How many spaces form the left you would like to place the piece?" << endl;
+		col = request_int("column"); 
 	}
 
 
@@ -42,9 +46,45 @@ void Game::request_starting_pos() {
 	col = col - 1;
 
 	curr_board.move_neutral(row, col, player_name);
-
 }
 
 void Game::display_board() {
 	curr_board.print_board();
+}
+
+
+// 
+int request_int(const string name) {
+	int output;
+	string input;
+	bool is_int = false;
+
+	cout << "Enter one number for " << name << endl;
+	cin >> input;
+
+	try {
+		output = stoi(input);
+		is_int = true;
+	}
+
+	catch (const std::invalid_argument& ia) {
+		cout << "Invalid input.\n";
+	}
+
+	while (!is_int) {
+		cout << "You must enter a number, not " << input << endl;
+		cout << "Enter one number for " << name << endl;
+		cin >> input;
+
+		try {
+			output = stoi(input);
+			is_int = true;
+		}
+
+		catch (const std::invalid_argument& ia) {
+			cout << "Invalid input.\n";
+		}
+	}
+
+	return output;
 }
