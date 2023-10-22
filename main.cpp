@@ -19,8 +19,7 @@ int main(int argc, char const *argv[])
 	test_board.move_neutral(2, 0, 'A');
 	test_board.print_board();
 
-	Game test_game;
-	
+	Game test_game(3);
 	test_game.request_starting_pos();
 
 

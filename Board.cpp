@@ -32,6 +32,9 @@ void Board::move_neutral(int row, int col, char player) {
     ypos = col;
 
 }
+int Board::get_size(){
+	return size;
+}
 
 Board::Board() {
 	// Default constructor
