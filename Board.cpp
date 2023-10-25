@@ -33,9 +33,41 @@ void Board::move_neutral(int row, int col, char player) {
 
 }
 
-Board::check_legal_movement(int new_xpos, int new_ypos) {
+bool Board::check_legal_movement(int new_xpos, int new_ypos) {
 	// checks if you can go to new_xpos, new_ypos on the board
 	// returns true if you can
+}
+
+void Board::move_relative(int distance, string direction, char player) {
+    // Accepts L, R, UL, UR, DL, DR and in number
+    // Find coordinates and call move_neutral
+    int row = xpos;
+    int col = ypos;
+    //Move diagonally
+    //Move left by distance
+    if (direction == "L") {
+        col = col - distance;
+    }
+    //Move right by distance
+    else if (direction == "R") {
+        col = col + distance;
+    }
+    //Move up left o by distance
+    else if (direction == "UL" ||  direction == "UR") {
+        row = row - distance;
+        if (direction == "UR") {
+            col = col + distance;
+        }
+    }
+    //Move down left and down right by distance
+    else if (direction == "DL" ||  direction == "DR") {
+        row = row + distance;
+        if (direction == "DL") {
+            col = col - distance;
+        }
+    }
+    //Call move_neutral
+    move_neutral(row, col, player);
 }
 
 int Board::get_size(){
