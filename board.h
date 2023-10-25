@@ -19,6 +19,8 @@ class Board {
 		// Accepts L, R, UL, UR, DL, DR
 		void move_relative(int distance, string direction, char player);
 		int get_size();
+		bool check_legal_movement(int new_xpos, int new_ypos);
+
 		Board();
 		Board(int new_size);
 };

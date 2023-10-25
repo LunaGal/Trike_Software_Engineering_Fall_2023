@@ -9,6 +9,8 @@ class Game {
 	public:
 		void request_starting_pos();
 		void display_board();
+		void start_game();
+		void request_movement();
 		Game(int num);
 };
 

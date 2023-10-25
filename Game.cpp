@@ -52,8 +52,17 @@ void Game::display_board() {
 	curr_board.print_board();
 }
 
+Game::start_game() {
+	// sets player etc
+	// asks for size
+	// "driver" for game
+}
 
-// 
+Game::request_movement() {
+	// asks player where to go until they specify a legal move
+}
+
+
 int request_int(const string name) {
 	int output;
 	string input;
