@@ -14,7 +14,13 @@ Game::Game(int num){
 }
 
 void Game::request_starting_pos() {
-
+	// Update to take inputs for new form of indexing like: 
+	/* 5 o o o o o
+	   4  o o o o
+	   3   o o o
+	   2    o o
+	   1     o
+	*/
 	int row, col;
 
 	cout << "Enter where you would like to place the neutral piece" << endl;
@@ -52,13 +58,13 @@ void Game::display_board() {
 	curr_board.print_board();
 }
 
-Game::start_game() {
+void Game::start_game() {
 	// sets player etc
 	// asks for size
 	// "driver" for game
 }
 
-Game::request_movement() {
+void Game::request_movement() {
 	// asks player where to go until they specify a legal move
 }
 
