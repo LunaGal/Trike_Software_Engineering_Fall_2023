@@ -8,7 +8,8 @@ using namespace std;
 
 void Board::print_board() {
 	for (int i = 0; i < size; i++) {
-		for (int j = 0; j < i; j++) {
+		cout << (i+1);
+		for (int j = size; j > i; j--) {
 			cout << " ";
 		}
 		for (char c: grid[i]) {
@@ -16,6 +17,21 @@ void Board::print_board() {
 		}
 		cout << "\n";
 	}
+	cout << "\n";
+}
+
+void Board::print_debug() {
+	for (int i = 0; i < size; i++) {
+		cout << (i+1);
+		for (int j = size; j > i; j--) {
+			cout << " ";
+		}
+		for (char c: grid[i]) {
+			cout << c << " ";
+		}
+		cout << "\n";
+	}
+	cout << "\n";
 }
 
 void Board::move_neutral(int row, int col, char player) {
@@ -55,14 +71,14 @@ void Board::move_relative(int distance, string direction, char player) {
     //Move up left o by distance
     else if (direction == "UL" ||  direction == "UR") {
         row = row - distance;
-        if (direction == "UR") {
+        if (direction == "UL") {
             col = col + distance;
         }
     }
     //Move down left and down right by distance
     else if (direction == "DL" ||  direction == "DR") {
         row = row + distance;
-        if (direction == "DL") {
+        if (direction == "DR") {
             col = col - distance;
         }
     }
@@ -84,7 +100,7 @@ Board::Board(int new_size) {
 	size = new_size;
 	grid = vector<vector<char> >();
 
-	for (int i = size; i > 0; i--) {
+	for (int i = 1; i < size + 1; i++) {
 		vector<char> row;
 		for (int j = 0; j < i; j++) {
 			row.push_back('o');

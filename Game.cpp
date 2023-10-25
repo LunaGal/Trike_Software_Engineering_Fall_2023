@@ -52,13 +52,13 @@ void Game::display_board() {
 	curr_board.print_board();
 }
 
-Game::start_game() {
+void Game::start_game() {
 	// sets player etc
 	// asks for size
 	// "driver" for game
 }
 
-Game::request_movement() {
+void Game::request_movement() {
 	// asks player where to go until they specify a legal move
 }
 
