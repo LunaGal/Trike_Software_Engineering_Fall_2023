@@ -12,8 +12,10 @@ class Game {
 		void start_game();
 		void request_movement();
 		Game(int num);
+		Game();
 };
 
 int request_int(const string);
+bool request_orientation();
 #endif
 
