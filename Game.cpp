@@ -18,30 +18,39 @@ Game::Game() {
 }
 
 void Game::request_starting_pos() {
-
+	
 	int row, col;
 
 	cout << "Enter where you would like to place the neutral piece" << endl;
 	row = request_int("row");
 	
-	while (row > curr_board.get_size()) {
-		cout << "Your input is invalid because the board only has " << curr_board.get_size() << " rows" << endl;
+	while (row > curr_board.get_size() || row <= 0) {
+		cout << "Your input is invalid because the board has rows 1 to " << curr_board.get_size() << " rows" << endl;
 		row = request_int("row");
 	}
+
+	if (row == 1){
+		col = 1;
+		//sets row and col to the correct index
+		row = row - 1;
+		col = col - 1;
+		curr_board.move_neutral(row, col, player_name);
+		return;
+	}
 	
-	cout << "How many spaces form the left you would like to place the piece?" << endl;
+	cout << "How many spaces form the left you would like to place the piece? (1 to " << row << ")" << endl;
 	col = request_int("column"); 
 
 
-	while (col > spaces){
-		cout << "Your input is invalid because row " << row <<  " has only " << (spaces) << " spaces." << endl;
+	while (col > row || col <= 0){
+		cout << "Your input is invalid because row " << row <<  " has 1 to " << row << " spaces." << endl;
 		cout << "Enter where you would like to place the neutral piece" << endl;
 		row = request_int("row");
-		while (row > curr_board.get_size()) {
-			cout << "Your input is invalid because the board only has " << curr_board.get_size() << " rows" << endl;
+		while (row > curr_board.get_size()|| row <= 0) {
+			cout << "Your input is invalid because the board has rows 1 to" << curr_board.get_size() << " rows" << endl;
 			row = request_int("row");
 		}
-		cout << "How many spaces form the left you would like to place the piece?" << endl;
+		cout << "How many spaces form the left you would like to place the piece? (1 to " << row << ")" << endl;
 		col = request_int("column"); 
 	}
 
