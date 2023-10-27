@@ -8,7 +8,8 @@ using namespace std;
 
 void Board::print_board() {
 	for (int i = 0; i < size; i++) {
-		for (int j = 0; j < i; j++) {
+		cout << (i+1);
+		for (int j = size; j > i; j--) {
 			cout << " ";
 		}
 		for (char c: grid[i]) {
@@ -16,6 +17,7 @@ void Board::print_board() {
 		}
 		cout << "\n";
 	}
+	cout << "\n";
 }
 
 void Board::move_neutral(int row, int col, char player) {
@@ -36,6 +38,7 @@ void Board::move_neutral(int row, int col, char player) {
 bool Board::check_legal_movement(int new_xpos, int new_ypos) {
 	// checks if you can go to new_xpos, new_ypos on the board
 	// returns true if you can
+    return false;
 }
 
 void Board::move_relative(int distance, string direction, char player) {
@@ -84,7 +87,7 @@ Board::Board(int new_size) {
 	size = new_size;
 	grid = vector<vector<char> >();
 
-	for (int i = size; i > 0; i--) {
+	for (int i = 1; i < size + 1; i++) {
 		vector<char> row;
 		for (int j = 0; j < i; j++) {
 			row.push_back('o');
