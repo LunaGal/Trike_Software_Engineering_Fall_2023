@@ -13,6 +13,10 @@ Game::Game(int num){
 	curr_board = inital_board;
 }
 
+Game::Game() {
+	// Empty constructor
+}
+
 void Game::request_starting_pos() {
 
 	int row, col;
@@ -53,9 +57,15 @@ void Game::display_board() {
 }
 
 void Game::start_game() {
-	// sets player etc
-	// asks for size
-	// "driver" for game
+	player_name = 'A';
+	int size = 3;
+	// Change this to be based on user input
+	bool orientation = true;
+	orientation = request_orientation();
+
+	// True is pointing up, false is pointing down
+	Board inital_board(size, orientation);
+	curr_board = inital_board;
 }
 
 void Game::request_movement() {
@@ -97,3 +107,27 @@ int request_int(const string name) {
 
 	return output;
 }
+
+// Returns true if user enters up, false if user enters down
+// Requests new input if the input does not match up or down
+bool request_orientation() {
+	cout << "Please specify the starting orientation" << endl;
+	cout << "Enter \"up\" for pointing up and \"down\" for pointing down: ";
+
+	string input;
+	cin >> input;
+
+	bool valid = (input == "up" || input == "down");
+
+	while (!valid) {
+		cout << input << " is not a valid orientation" << endl;
+		cout << "Only \"up\" and \"down\" are valid inputs" << endl;
+		cout << "Enter \"up\" for pointing up and \"down\" for pointing down: ";
+		cin >> input;
+		valid = (input == "up" || input == "down");
+	}
+
+	return (input == "up");
+}
+
+
