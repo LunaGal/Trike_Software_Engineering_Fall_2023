@@ -11,6 +11,5 @@ int main(int argc, char const *argv[])
 	test_game.display_board();
 	test_game.request_starting_pos();
 	test_game.display_board();
-
     return 0;
 }
