@@ -76,6 +76,7 @@ void Board::move_neutral(int row, int col, char player) {
 bool Board::check_legal_movement(int new_xpos, int new_ypos) {
 	// checks if you can go to new_xpos, new_ypos on the board
 	// returns true if you can
+    return false;
 }
 
 void Board::move_relative(int distance, string direction, char player) {
