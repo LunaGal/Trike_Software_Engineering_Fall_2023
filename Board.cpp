@@ -10,6 +10,9 @@ void Board::print_board() {
 	if (point_up) {
 		for (int i = 0; i < size; i++) {
 			cout << (i+1);
+			if ((i+1) < 10) {
+				cout << " ";
+			}
 			for (int j = size; j > i; j--) {
 				cout << " ";
 			}
@@ -23,6 +26,9 @@ void Board::print_board() {
 	else {
 		for (int i = size-1; i > -1; i--) {
 			cout << (i+1);
+			if ((i+1) < 10) {
+				cout << " ";
+			}
 			for (int j = size; j > i; j--) {
 				cout << " ";
 			}

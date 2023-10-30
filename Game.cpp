@@ -67,7 +67,7 @@ void Game::display_board() {
 
 void Game::start_game() {
 	player_name = 'A';
-	int size = 3;
+	int size = request_size();
 	// Change this to be based on user input
 	bool orientation = true;
 	orientation = request_orientation();
@@ -137,6 +137,15 @@ bool request_orientation() {
 	}
 
 	return (input == "up");
+}
+
+
+// Requests an integer from 2 to 40
+int request_size() {
+	int size = 2;
+	cout << "Please enter a starting size for the board. The size can be from 2 to 40, inclusive." << endl;
+	size = request_int("size");
+	return size;
 }
 
 
