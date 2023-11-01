@@ -74,9 +74,38 @@ void Board::move_neutral(int row, int col, char player) {
 }
 
 bool Board::check_legal_movement(int new_xpos, int new_ypos) {
-	// checks if you can go to new_xpos, new_ypos on the board
-	// returns true if you can
+	if ((new_xpos + 1 > size)||(new_xpos < 0)){
+		//new_xpos is out of bouds
+		return false;
+	}
+	else if ((new_ypos > new_xpos)||(new_ypos < 0)){
+		//new_ypos is out of bouds
+		return false;
+	}
+	else if (new_xpos == xpos){
+		//moving in a stright line in some direction 
+		if(new_ypos == ypos){
+			//new position same as previous position
+			return false;
+		}	
+		else if(new_ypos<ypos){
+			//moving to left
+			for (int i = ypos; i < new_ypos; i--){
+				
+			}
+		}
+		else {
+			//mocing to right 
+		}
+
+	}
+	//systematicaly ckeck everything in a stright line between (xpos,ypos) and (new_xpos, new_ypos)
     return false;
+}
+
+bool Board::check_legal_diagonal(int new_xpos, int new_ypos){
+	//checks if the movement leagal when moving in a diagonal direction
+	return false;
 }
 
 void Board::move_relative(int distance, string direction, char player) {
