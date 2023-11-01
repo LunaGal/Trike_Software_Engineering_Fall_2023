@@ -103,12 +103,14 @@ bool Board::check_legal_movement(int new_xpos, int new_ypos) {
     return false;
 }
 
+
 bool Board::check_legal_diagonal(int new_xpos, int new_ypos){
 	//checks if the movement leagal when moving in a diagonal direction
 	return false;
 }
 
-void Board::move_relative(int distance, string direction, char player) {
+bool Board::move_relative(int distance, string direction, char player) {
+
     // Accepts L, R, UL, UR, DL, DR and in number
     // Find coordinates and call move_neutral
     int row = xpos;
@@ -136,8 +138,15 @@ void Board::move_relative(int distance, string direction, char player) {
             col = col + distance;
         }
     }
-    //Call move_neutral
-    move_neutral(row, col, player);
+
+    bool valid = check_legal_movement(row, col);
+
+    if (valid) {
+    	//Call move_neutral
+    	move_neutral(row, col, player);
+    }
+
+    return valid;
 }
 
 int Board::get_size(){
