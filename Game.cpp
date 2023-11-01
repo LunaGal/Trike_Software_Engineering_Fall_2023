@@ -78,7 +78,32 @@ void Game::start_game() {
 }
 
 void Game::request_movement() {
-	// asks player where to go until they specify a legal move
+	cout << "Please specify how you would like to move.";
+	cout << "Enter a direction followed by a distance.";
+	cout << "For direction, enter UL, UR, Dl, DR, L, or R.";
+	cout << "For distance, enter a single whole number."
+
+	string direction = "";
+	int distance;
+
+	// Take in input
+
+	direction = request_direction();
+	distance = request_int("distance");
+
+	// Validate format
+
+	// Validate move legality
+	// Rule 1: Not Out of Bounds
+	// Rule 2: No markers in the way
+	bool valid = curr_board.move_relative(distance, direction, player_name);
+	while (!valid ) {
+		// re-request input
+		cout << "Not a valid move";
+		cout << "Please specify how you would like to move.";
+		direction = request_direction();
+		distance = request_int("distance");
+	}
 }
 
 
@@ -115,6 +140,34 @@ int request_int(const string name) {
 	}
 
 	return output;
+}
+
+string request_direction() {
+	string language[] = {"UR", "UL", "DR", "DL", "R", "L"};
+	string input;
+	bool is_valid = false;
+
+	cout << "Enter one value for direction" << endl;
+	cin >> input;
+
+	// Check if input is a valid direction
+	for (auto s : language) {
+		is_valid = (is_valid || (s == input));
+	}
+
+	while (!valid) {
+		cout << "You must enter a valid direction, not " << input << endl;
+		cout << "The valid directions are " << language << endl;
+		cout << "Enter one value for " << name << endl;
+		cin >> input;
+
+		// Check if input is a valid direction
+		for (auto s : language) {
+			is_valid = (is_valid || (s == input));
+		}
+	}
+
+	return input;
 }
 
 // Returns true if user enters up, false if user enters down
