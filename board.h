@@ -22,6 +22,7 @@ class Board {
 		void move_relative(int distance, string direction, char player);
 		int get_size();
 		bool check_legal_movement(int new_xpos, int new_ypos);
+		bool Board::check_legal_diagonal(int new_xpos, int new_ypos);
 
 		Board();
 		Board(int new_size);
