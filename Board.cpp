@@ -78,10 +78,13 @@ bool Board::check_legal_movement(int new_xpos, int new_ypos) {
 		//new_xpos is out of bouds
 		return false;
 	}
+
 	else if ((new_ypos > new_xpos)||(new_ypos < 0)){
 		//new_ypos is out of bouds
 		return false;
 	}
+
+
 	else if (new_xpos == xpos){
 		//moving in a stright line in some direction 
 		if(new_ypos == ypos){
@@ -99,6 +102,10 @@ bool Board::check_legal_movement(int new_xpos, int new_ypos) {
 		}
 
 	}
+
+	else {
+		return check_legal_diagonal(new_xpos, new_ypos);
+	}
 	//systematicaly ckeck everything in a stright line between (xpos,ypos) and (new_xpos, new_ypos)
     return false;
 }
@@ -106,7 +113,60 @@ bool Board::check_legal_movement(int new_xpos, int new_ypos) {
 
 bool Board::check_legal_diagonal(int new_xpos, int new_ypos){
 	//checks if the movement leagal when moving in a diagonal direction
-	return false;
+
+	// Break into cases by direction
+
+	// We are going down
+	if (new_xpos > xpos) {
+		// The DR situation
+		if (new_ypos > ypos) {
+			// Check each position from here to destination
+			int distance = (new_xpos - xpos);
+			for (int i = 1; i <= distance; i++) {
+				if (grid[xpos + i][ypos + i] != 'o') {
+					return false;
+				}
+			}
+		}
+
+		// Else we are in the DL situation
+		else {
+			// Check each position from here to destination
+			int distance = (new_xpos - xpos);
+			for (int i = 1; i <= distance; i++) {
+				if (grid[xpos + i][ypos] != 'o') {
+					return false;
+				}
+			}
+		}
+	}
+
+	// We are going up
+	else {
+		// The UL situation
+		if (new_ypos < ypos) {
+			// Check each position from here to destination
+			int distance = (xpos - new_xpos);
+			for (int i = 1; i <= distance; i++) {
+				if (grid[xpos - i][ypos - i] != 'o') {
+					return false;
+				}
+			}
+		}
+
+		// Else we are in the UR situation
+		else {
+			// Check each position from here to destination
+			int distance = (xpos - new_xpos);
+			for (int i = 1; i <= distance; i++) {
+				if (grid[xpos - i][ypos] != 'o') {
+					return false;
+				}
+			}
+		}
+	}
+
+	return true;
 }
 
 bool Board::move_relative(int distance, string direction, char player) {

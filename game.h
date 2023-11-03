@@ -18,5 +18,6 @@ class Game {
 int request_int(const string);
 bool request_orientation();
 int request_size();
+string request_direction();
 #endif
 

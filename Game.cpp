@@ -78,10 +78,10 @@ void Game::start_game() {
 }
 
 void Game::request_movement() {
-	cout << "Please specify how you would like to move.";
-	cout << "Enter a direction followed by a distance.";
-	cout << "For direction, enter UL, UR, Dl, DR, L, or R.";
-	cout << "For distance, enter a single whole number."
+	cout << "Please specify how you would like to move." << endl;
+	cout << "Enter a direction followed by a distance." << endl;
+	cout << "For direction, enter UL, UR, DL, DR, L, or R." << endl;
+	cout << "For distance, enter a single whole number." << endl;
 
 	string direction = "";
 	int distance;
@@ -99,8 +99,8 @@ void Game::request_movement() {
 	bool valid = curr_board.move_relative(distance, direction, player_name);
 	while (!valid ) {
 		// re-request input
-		cout << "Not a valid move";
-		cout << "Please specify how you would like to move.";
+		cout << "Not a valid move." << endl;
+		cout << "Please specify how you would like to move." << endl;
 		direction = request_direction();
 		distance = request_int("distance");
 	}
@@ -147,7 +147,7 @@ string request_direction() {
 	string input;
 	bool is_valid = false;
 
-	cout << "Enter one value for direction" << endl;
+	cout << "Enter one value for direction." << endl;
 	cin >> input;
 
 	// Check if input is a valid direction
@@ -155,10 +155,14 @@ string request_direction() {
 		is_valid = (is_valid || (s == input));
 	}
 
-	while (!valid) {
+	while (!is_valid) {
 		cout << "You must enter a valid direction, not " << input << endl;
-		cout << "The valid directions are " << language << endl;
-		cout << "Enter one value for " << name << endl;
+		cout << "The valid directions are ";
+		for (auto s : language) {
+			cout << s << " ";
+		}
+		cout << endl;
+		cout << "Enter one value for direction." << endl;
 		cin >> input;
 
 		// Check if input is a valid direction
@@ -198,6 +202,17 @@ int request_size() {
 	int size = 2;
 	cout << "Please enter a starting size for the board. The size can be from 2 to 40, inclusive." << endl;
 	size = request_int("size");
+	// Make sure it's between 2 and 4
+	while (size < 2 || size > 40) {
+		if (size < 2) {
+			cout << size << " is too small. Please enter a size between 2 and 40." << endl;
+			size = request_int("size");
+		}
+		else {
+			cout << size << " is too large. Please enter a size between 2 and 40." << endl;
+			size = request_int("size");
+		}
+	}
 	return size;
 }
 
