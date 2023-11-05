@@ -74,43 +74,30 @@ void Board::move_neutral(int row, int col, char player) {
 }
 
 bool Board::check_legal_movement(int new_xpos, int new_ypos) {
-	if(grid[new_xpos][new_ypos] != 'o'){
+	if ((new_xpos + 1 > size)||(new_xpos < 0)) {
+		//new_xpos is out of bounds
+		return false;
+	}
+
+	if ((new_ypos > new_xpos)||(new_ypos < 0)) {
+		//new_ypos is out of bounds
+		return false;
+	}
+
+	if (grid[new_xpos][new_ypos] != 'o') {
 		//check positon to be moved to
 		return false;
 	}
-	else if ((new_xpos + 1 > size)||(new_xpos < 0)){
-		//new_xpos is out of bouds
+
+
+	if ((new_ypos == ypos) && (new_xpos == xpos)) {
+		//new position same as previous position
 		return false;
 	}
 
-	else if ((new_ypos > new_xpos)||(new_ypos < 0)){
-		//new_ypos is out of bouds
-		return false;
-	}
-
-
-	else if (new_xpos == xpos){
-		//moving in a stright line in some direction 
-		if(new_ypos == ypos){
-			//new position same as previous position
-			return false;
-		}	
-		else if(new_ypos < ypos){
-			//moving to left
-			for (int i = ypos - 1; i > new_ypos; i--){
-				if(grid[xpos][i] != 'o'){
-					return false;
-				}
-			}
-		}
-		else {
-			//moving to right 
-			for (int i = ypos + 1; i < new_ypos; i++){
-				if(grid[xpos][i] != 'o'){
-					return false;
-				}
-			}
-		}
+	if (new_xpos == xpos) {
+		//moving in a stright line in some direction 	
+		return check_legal_horizontal(new_xpos, new_ypos);
 	}
 
 	else {
@@ -120,10 +107,35 @@ bool Board::check_legal_movement(int new_xpos, int new_ypos) {
     return false;
 }
 
+bool Board::check_legal_horizontal(int new_xpos, int new_ypos) {
+	// checks if the movement is legal moving horizontally
+	// Break into cases by direction
+
+
+	// moving to left
+	if (new_ypos < ypos) {
+		for (int i = ypos - 1; i > new_ypos; i--) {
+			if(grid[xpos][i] != 'o'){
+				return false;
+			}
+		}
+	}
+
+	// moving to right 
+	else {
+		for (int i = ypos + 1; i < new_ypos; i++){
+			if(grid[xpos][i] != 'o'){
+				return false;
+			}
+		}
+	}
+
+	return true;
+}
+
 
 bool Board::check_legal_diagonal(int new_xpos, int new_ypos){
-	//checks if the movement leagal when moving in a diagonal direction
-
+	// checks if the movement legal when moving in a diagonal direction
 	// Break into cases by direction
 
 	// We are going down

@@ -11,6 +11,8 @@ class Game {
 		void display_board();
 		void start_game();
 		void request_movement();
+		void run_game();
+		bool check_over();
 		Game(int num);
 		Game();
 };
