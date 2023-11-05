@@ -235,6 +235,64 @@ int Board::get_size(){
 	return size;
 }
 
+//Define winner
+char Board::get_winner() {
+    int directions[6][2] = {
+            //UR - {x_diff, y_diff}
+            {-1,0},
+            //UL
+            {-1,-1},
+            //L
+            {0,-1},
+            //R
+            {0,1},
+            //DL
+            {1,0},
+            //DR
+            {1,1}
+    };
+    char p1Name = tolower(grid[xpos][ypos]);
+    char p2Name;
+
+    int p1Score = 1;
+    int p2Score = 0;
+
+    for (auto d : directions) {
+        int test_x = xpos + d[0];
+        int test_y = ypos + d[1];
+
+        bool validPos = check_bounds(test_x, test_y);
+        //Incrementing player if coordinate is valid
+        if (validPos) {
+            if (grid[test_x][test_y] == p1Name) {
+                p1Score += 1;
+            }
+            else {
+                p2Name = grid[test_x][test_y];
+                p2Score += 1;
+            }
+        }
+    }
+    //Returning winner based on their score
+    if (p1Score > p2Score) {
+        return p1Name;
+    }
+    return p2Name;
+
+}
+bool Board::check_bounds(int test_x, int test_y) {
+    if ((test_x + 1 > size)||(test_x < 0)) {
+        //test_x is out of bounds
+        return false;
+    }
+
+    if ((test_y > test_x)||(test_y < 0)) {
+        //test_y is out of bounds
+        return false;
+    }
+    return true;
+}
+
 Board::Board() {
 	// Default constructor
 }
