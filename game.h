@@ -4,15 +4,17 @@
 class Game {
 	private:
 		char player_name;
+		char ai_name;
 		Board curr_board;
 
 	public:
 		void request_starting_pos();
 		void display_board();
 		void start_game();
-		void request_movement();
+		string request_movement();
 		void run_game();
 		bool check_over();
+		string ai_move();
 		Game(int num);
 		Game();
 };

@@ -8,6 +8,7 @@ using namespace std;
 
 Game::Game(int num){
 	player_name = 'A';
+	ai_name = 'B';
 	Board inital_board(num);
 
 	curr_board = inital_board;
@@ -67,6 +68,7 @@ void Game::display_board() {
 
 void Game::start_game() {
 	player_name = 'A';
+	ai_name = 'B';
 	int size = request_size();
 	// Change this to be based on user input
 	bool orientation = true;
@@ -77,7 +79,7 @@ void Game::start_game() {
 	curr_board = inital_board;
 }
 
-void Game::request_movement() {
+string Game::request_movement() {
 	cout << "Please specify how you would like to move." << endl;
 	cout << "Enter a direction followed by a distance." << endl;
 	cout << "For direction, enter UL, UR, DL, DR, L, or R." << endl;
@@ -103,26 +105,57 @@ void Game::request_movement() {
 		cout << "Please specify how you would like to move." << endl;
 		direction = request_direction();
 		distance = request_int("distance");
+		valid = curr_board.move_relative(distance, direction, player_name);
 	}
+	return direction + " " + to_string(distance);
 }
 
 void Game::run_game() {
+	string nonsense;
 	start_game();
+	display_board();
+	request_starting_pos();
+	display_board();
+	cout << "Enter any input to pass the turn to the AI (Hint: try pressing y then ENTER)." << endl;
+	cin >> nonsense;
 	bool game_over = false;
 	while (!game_over) {
 		// Make an AI move
+		string direction = ai_move();
+		display_board();
+		cout << "AI moved " << direction << " 1" << endl;
+
 		// Check if game over
 
 		if (!game_over) {
-			request_movement();
+			string move = request_movement();
+			display_board();
+			cout << "You moved " << move << endl;
+			cout << "Enter any input to pass the turn to the AI (Hint: try pressing y then ENTER)." << endl;
+			cin >> nonsense;
 			// Check if game over
 		}
 	}
+	char winner = curr_board.get_winner();
+	cout << "The winner is " << winner << endl;
 }
 
 bool Game::check_over() {
 	// For now, always say it isn't over
 	return false;
+}
+
+// Move in the first available direction
+// If for some reason it can't move anywhere, doesn't move at all (that shouldn't happen)
+string Game::ai_move() {
+	string directions[] = {"UR", "UL", "DR", "DL", "R", "L"};
+	for (auto d : directions) {
+		bool valid = curr_board.move_relative(1, d, ai_name);
+		if (valid) {
+			return d;
+		}
+	}
+	return "";
 }
 
 // Functions

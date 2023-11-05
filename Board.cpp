@@ -197,28 +197,57 @@ bool Board::move_relative(int distance, string direction, char player) {
     // Find coordinates and call move_neutral
     int row = xpos;
     int col = ypos;
-    //Move diagonally
-    //Move left by distance
-    if (direction == "L") {
-        col = col - distance;
+
+    if (point_up) {
+    	//Move diagonally
+	    //Move left by distance
+	    if (direction == "L") {
+	        col = col - distance;
+	    }
+	    //Move right by distance
+	    else if (direction == "R") {
+	        col = col + distance;
+	    }
+	    //Move up left o by distance
+	    else if (direction == "UL" ||  direction == "UR") {
+	        row = row - distance;
+	        if (direction == "UL") {
+	            col = col - distance;
+	        }
+	    }
+	    //Move down left and down right by distance
+	    else if (direction == "DL" ||  direction == "DR") {
+	        row = row + distance;
+	        if (direction == "DR") {
+	            col = col + distance;
+	        }
+	    }
     }
-    //Move right by distance
-    else if (direction == "R") {
-        col = col + distance;
-    }
-    //Move up left o by distance
-    else if (direction == "UL" ||  direction == "UR") {
-        row = row - distance;
-        if (direction == "UL") {
-            col = col - distance;
-        }
-    }
-    //Move down left and down right by distance
-    else if (direction == "DL" ||  direction == "DR") {
-        row = row + distance;
-        if (direction == "DR") {
-            col = col + distance;
-        }
+
+    else {
+    	//Move diagonally
+	    //Move left by distance
+	    if (direction == "L") {
+	        col = col - distance;
+	    }
+	    //Move right by distance
+	    else if (direction == "R") {
+	        col = col + distance;
+	    }
+	    //Move up left o by distance
+	    else if (direction == "DL" ||  direction == "DR") {
+	        row = row - distance;
+	        if (direction == "DL") {
+	            col = col - distance;
+	        }
+	    }
+	    //Move down left and down right by distance
+	    else if (direction == "UL" ||  direction == "UR") {
+	        row = row + distance;
+	        if (direction == "UR") {
+	            col = col + distance;
+	        }
+	    }
     }
 
     bool valid = check_legal_movement(row, col);
