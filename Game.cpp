@@ -106,6 +106,27 @@ void Game::request_movement() {
 	}
 }
 
+void Game::run_game() {
+	start_game();
+	bool game_over = false;
+	while (!game_over) {
+		// Make an AI move
+		// Check if game over
+
+		if (!game_over) {
+			request_movement();
+			// Check if game over
+		}
+	}
+}
+
+bool Game::check_over() {
+	// For now, always say it isn't over
+	return false;
+}
+
+// Functions
+
 
 int request_int(const string name) {
 	int output;
