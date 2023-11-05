@@ -74,7 +74,11 @@ void Board::move_neutral(int row, int col, char player) {
 }
 
 bool Board::check_legal_movement(int new_xpos, int new_ypos) {
-	if ((new_xpos + 1 > size)||(new_xpos < 0)){
+	if(grid[new_xpos][new_ypos] != 'o'){
+		//check positon to be moved to
+		return false;
+	}
+	else if ((new_xpos + 1 > size)||(new_xpos < 0)){
 		//new_xpos is out of bouds
 		return false;
 	}
@@ -91,16 +95,22 @@ bool Board::check_legal_movement(int new_xpos, int new_ypos) {
 			//new position same as previous position
 			return false;
 		}	
-		else if(new_ypos<ypos){
+		else if(new_ypos < ypos){
 			//moving to left
-			for (int i = ypos; i < new_ypos; i--){
-				
+			for (int i = ypos - 1; i > new_ypos; i--){
+				if(grid[xpos][i] != 'o'){
+					return false;
+				}
 			}
 		}
 		else {
-			//mocing to right 
+			//moving to right 
+			for (int i = ypos + 1; i < new_ypos; i++){
+				if(grid[xpos][i] != 'o'){
+					return false;
+				}
+			}
 		}
-
 	}
 
 	else {
