@@ -309,6 +309,38 @@ char Board::get_winner() {
     return p2Name;
 
 }
+
+bool Board::game_over() {
+	int directions[6][2] = {
+            //UR - {x_diff, y_diff}
+            {-1,0},
+            //UL
+            {-1,-1},
+            //L
+            {0,-1},
+            //R
+            {0,1},
+            //DL
+            {1,0},
+            //DR
+            {1,1}
+    	};
+
+    for (auto d : directions) {
+        int test_x = xpos + d[0];
+        int test_y = ypos + d[1];
+
+        bool validPos = check_bounds(test_x, test_y);
+        //Incrementing player if coordinate is valid
+        if (validPos) {
+            if (grid[test_x][test_y] == 'o') {
+               return false;
+        	}
+    	}
+	}
+	return true;	
+}
+
 bool Board::check_bounds(int test_x, int test_y) {
     if ((test_x + 1 > size)||(test_x < 0)) {
         //test_x is out of bounds

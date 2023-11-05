@@ -121,20 +121,25 @@ void Game::run_game() {
 	bool game_over = false;
 	while (!game_over) {
 		// Make an AI move
+		game_over = curr_board.game_over();
+
 		string direction = ai_move();
 		display_board();
 		cout << "AI moved " << direction << " 1" << endl;
 
-		// Check if game over
 
 		if (!game_over) {
 			string move = request_movement();
 			display_board();
 			cout << "You moved " << move << endl;
-			cout << "Enter any input to pass the turn to the AI (Hint: try pressing y then ENTER)." << endl;
-			cin >> nonsense;
+			game_over = curr_board.game_over();
+			if (!game_over){
+				cout << "Enter any input to pass the turn to the AI (Hint: try pressing y then ENTER)." << endl;
+				cin >> nonsense;
+			}
 			// Check if game over
 		}
+
 	}
 	char winner = curr_board.get_winner();
 	cout << "The winner is " << winner << endl;
