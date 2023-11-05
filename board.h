@@ -24,6 +24,8 @@ class Board {
 		bool check_legal_movement(int new_xpos, int new_ypos);
 		bool check_legal_horizontal(int new_xpos, int new_ypos);
 		bool check_legal_diagonal(int new_xpos, int new_ypos);
+        bool check_bounds(int test_x, int test_y);
+        char get_winner();
 
 		Board();
 		Board(int new_size);

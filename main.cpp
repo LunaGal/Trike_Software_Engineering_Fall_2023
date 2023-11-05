@@ -4,9 +4,6 @@
 
 using namespace std;
 
-int main(int argc, char const *argv[])
-{
-    Game game = Game();
-    game.run_game();
+int main(int argc, char const *argv[]){
     return 0;
 }
