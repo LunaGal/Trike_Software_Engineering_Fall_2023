@@ -127,7 +127,7 @@ void Game::run_game() {
 		display_board();
 		cout << "AI moved " << direction << " 1" << endl;
 
-
+		game_over = curr_board.game_over();
 		if (!game_over) {
 			string move = request_movement();
 			display_board();
