@@ -12,7 +12,6 @@ class Game {
 		void display_board();
 		void start_game();
 		string request_movement();
-		bool request_first();
 		void run_game();
 		bool check_over();
 		string ai_move();
@@ -20,6 +19,7 @@ class Game {
 		Game();
 };
 
+bool request_first();
 int request_int(const string);
 bool request_orientation();
 int request_size();

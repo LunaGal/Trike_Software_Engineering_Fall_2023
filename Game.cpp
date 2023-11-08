@@ -126,7 +126,8 @@ void Game::run_game() {
 	else {
 		// Make the first AI move
 		cout << "The AI started in 1, 1." << endl;
-		curr_board.move_neutral(1, 1, 'B');
+		curr_board.move_neutral(0, 0, 'B');
+        display_board();
 		// No need to check if over because we are at least 2x2
 
 		// Ask the user for their first move
@@ -192,7 +193,7 @@ bool request_first() {
 
 	// Check if the input is valid
 	while(!(input == "y" || input == "n")) {
-		cout >> "Please enter y or n." << endl;
+		cout << "Please enter y or n." << endl;
 		cin >> input;
 	}
 
