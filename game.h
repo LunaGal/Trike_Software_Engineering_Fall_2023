@@ -12,6 +12,7 @@ class Game {
 		void display_board();
 		void start_game();
 		string request_movement();
+		bool request_first();
 		void run_game();
 		bool check_over();
 		string ai_move();

@@ -112,13 +112,33 @@ string Game::request_movement() {
 
 void Game::run_game() {
 	string nonsense;
+
+	bool game_over = false;
 	start_game();
 	display_board();
-	request_starting_pos();
-	display_board();
-	cout << "Enter any input to pass the turn to the AI (Hint: try pressing y then ENTER)." << endl;
-	cin >> nonsense;
-	bool game_over = false;
+	bool user_first = request_first();
+	if (user_first) {
+		request_starting_pos();
+		display_board();
+		cout << "Enter any input to pass the turn to the AI (Hint: try pressing y then ENTER)." << endl;
+		cin >> nonsense;
+	}
+	else {
+		// Make the first AI move
+		cout << "The AI started in 1, 1." << endl;
+		curr_board.move_neutral(1, 1, 'B');
+		// No need to check if over because we are at least 2x2
+
+		// Ask the user for their first move
+		string move = request_movement();
+		display_board();
+		cout << "You moved " << move << endl;
+		game_over = curr_board.game_over();
+		if (!game_over){
+			cout << "Enter any input to pass the turn to the AI (Hint: try pressing y then ENTER)." << endl;
+			cin >> nonsense;
+		}
+	}
 	while (!game_over) {
 		// Make an AI move
 		game_over = curr_board.game_over();
@@ -164,6 +184,21 @@ string Game::ai_move() {
 }
 
 // Functions
+
+bool request_first() {
+	string input;
+	cout << "Would you like to go first? Please enter y or n." << endl;
+	cin >> input;
+
+	// Check if the input is valid
+	while(!(input == "y" || input == "n")) {
+		cout >> "Please enter y or n." << endl;
+		cin >> input;
+	}
+
+	// Return whether the user wants to go first
+	return (input == "y");
+}
 
 
 int request_int(const string name) {
