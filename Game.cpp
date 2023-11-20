@@ -91,7 +91,7 @@ string Game::request_movement() {
 	// Take in input
 
 	direction = request_direction();
-	distance = request_int("distance");
+	distance = request_pos_int("distance");
 
 	// Validate format
 
@@ -104,7 +104,7 @@ string Game::request_movement() {
 		cout << "Not a valid move." << endl;
 		cout << "Please specify how you would like to move." << endl;
 		direction = request_direction();
-		distance = request_int("distance");
+		distance = request_pos_int("distance");
 		valid = curr_board.move_relative(distance, direction, player_name);
 	}
 	return direction + " " + to_string(distance);
@@ -231,6 +231,49 @@ int request_int(const string name) {
 
 		catch (const std::invalid_argument& ia) {
 			cout << "Invalid input.\n";
+		}
+	}
+
+	return output;
+}
+
+int request_pos_int(const string name) {
+	int output = 0;
+	string input;
+	bool is_pos_int = false;
+
+	cout << "Enter one number for " << name << endl;
+	cin >> input;
+
+	try {
+		output = stoi(input);
+		is_pos_int = true;
+	}
+
+	catch (const std::invalid_argument& ia) {
+		cout << "Invalid input.\n";
+	}
+
+	if (output < 1) {
+		is_pos_int = false;
+	}
+
+	while (!is_pos_int) {
+		cout << "You must enter a positive number, not " << input << endl;
+		cout << "Enter one number for " << name << endl;
+		cin >> input;
+
+		try {
+			output = stoi(input);
+			is_pos_int = true;
+		}
+
+		catch (const std::invalid_argument& ia) {
+			cout << "Invalid input.\n";
+		}
+
+		if (output < 1) {
+			is_pos_int = false;
 		}
 	}
 

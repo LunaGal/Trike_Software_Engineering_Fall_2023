@@ -21,6 +21,7 @@ class Game {
 
 bool request_first();
 int request_int(const string);
+int request_pos_int(const string);
 bool request_orientation();
 int request_size();
 string request_direction();
